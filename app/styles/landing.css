@@ -6,7 +6,7 @@ body.landing {
     position: relative;
     min-height: 600px;
     background-image: url(../assets/images/bloc_jams_bg.jpg);
-    background-repeate: no-repeat;
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
 }
