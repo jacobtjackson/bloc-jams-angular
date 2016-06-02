@@ -41,7 +41,7 @@
         *@desc sets the volume to 100%
         *@type {value}
         */
-        SongPlayer.volume = null;
+        SongPlayer.volume = 100;
         
         /**
         *@desc stops the current song playing and sets the song playing to null
