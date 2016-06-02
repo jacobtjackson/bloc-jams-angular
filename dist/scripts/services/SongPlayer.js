@@ -57,25 +57,35 @@
         */
         var setSong = function(song) {
             if (currentBuzzObject) {
-                stopSong(song);
+                currentBuzzObject.stop();
+                SongPlayer.currentSong.playing = null;
             }
-            
+
             currentBuzzObject = new buzz.sound(song.audioUrl, {
                 formats: ['mp3'],
                 preload: true
             });
-            
+
+            /**
+            * @function currentBuzzObject.bind
+            * @desc Adds an event listener to the Buzz sound object to listen for a timeupdate event
+            */
             currentBuzzObject.bind('timeupdate', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
-            
+
             SongPlayer.currentSong = song;
         };
         
+        /**
+        @function SongPlayer.play
+        @desc registers the user clicking play, sets the song as current song and plays it if it isn't already current song, plays it if it is.
+        @params {object} song
+        */
         SongPlayer.play = function(song) {
-            song = song || SongPlayer.currentSong || currentAlbum.songs[0];
+            song = song || SongPlayer.currentSong;
             if (SongPlayer.currentSong !== song) {
                 setSong(song);
                 playSong(song);
@@ -86,6 +96,11 @@
             }
         };
         
+        /**
+        @function SongPlayer.pause
+        @desc registers the user clicking pause and pauses the song
+        @params {object} song
+        */
         SongPlayer.pause = function(song) {
             song = song || SongPlayer.currentSong;
             currentBuzzObject.pause();
@@ -93,8 +108,9 @@
         };
         
         /**
-        *@desc sets the currentSong to the previous song in the album
-        *@param {object} song
+        @function SongPlayer.previous
+        @desc registers the user clicking previous, sets the song as the last song or stops it if it's the first song in currentAlbum
+        @params {object} song
         */
         SongPlayer.previous = function(song) {
             var currentSongIndex = getSongIndex(SongPlayer.currentSong);
