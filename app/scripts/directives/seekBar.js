@@ -122,9 +122,9 @@
                 @desc notifies onChange that scope.value has changed
                 @param {function}
                 */
-                var notifyOnChange = function(newValue) {
+                var notifyOnChange = function(oldValue) {
                     if (typeof scope.onChange === 'function') {
-                        scope.onChange({value: newValue});
+                        scope.onChange({time: oldValue});
                     }
                 }; 
             }

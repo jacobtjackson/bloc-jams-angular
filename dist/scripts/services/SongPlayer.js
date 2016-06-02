@@ -23,6 +23,11 @@
         * @type {Object}
         */
         SongPlayer.currentSong = null;
+        
+        /**
+        *@attribute 
+        *@desc sets the currentBuzzObject to null. 
+        */
         var currentBuzzObject = null;
         
         /**
@@ -30,6 +35,13 @@
         * @type {Number}
         */
         SongPlayer.currentTime = null;
+        
+        /**
+        *@attribute SongPlayer.volume
+        *@desc sets the volume to 100%
+        *@type {value}
+        */
+        SongPlayer.volume = null;
         
         /**
         *@desc stops the current song playing and sets the song playing to null
@@ -150,6 +162,17 @@
         SongPlayer.setCurrentTime = function(time) {
             if (currentBuzzObject) {
                 currentBuzzObject.setTime(time);
+            }
+        };
+        
+        /**
+        *@function setVolume
+        *@desc set volume of currently playing song
+        *@param {number} volume
+        */
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
             }
         };
         
