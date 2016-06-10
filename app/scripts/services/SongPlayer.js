@@ -87,6 +87,10 @@
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
+            
+            currentBuzzObject.bind('ended', function(e) {
+                SongPlayer.next();
+            });
 
             SongPlayer.currentSong = song;
         };
@@ -175,6 +179,7 @@
                 currentBuzzObject.setVolume(volume);
             }
         };
+        
         
         return SongPlayer;
     }
